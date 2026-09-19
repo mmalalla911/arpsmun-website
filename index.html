@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ARPSMUN V | Alrawabi Model United Nations</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
@@ -28,9 +33,10 @@
     }
 
     body {
+      min-width: 320px;
+      overflow-x: hidden;
       color: var(--white);
       font-family: "Inter", sans-serif;
-      overflow-x: hidden;
       background:
         radial-gradient(circle at 20% 20%, rgba(87, 45, 125, 0.25), transparent 30%),
         radial-gradient(circle at 80% 70%, rgba(113, 65, 151, 0.2), transparent 30%),
@@ -42,9 +48,9 @@
       position: fixed;
       inset: 0;
       z-index: 10;
-      opacity: 0.13;
       pointer-events: none;
-      background: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.12;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     }
 
     a {
@@ -52,6 +58,7 @@
       text-decoration: none;
     }
 
+    /* Stars */
     .stars,
     .stars::before,
     .stars::after {
@@ -109,7 +116,8 @@
     }
 
     @keyframes pulse {
-      0%, 100% {
+      0%,
+      100% {
         opacity: 0.2;
         transform: scale(1);
       }
@@ -120,33 +128,44 @@
       }
     }
 
+    /* Navigation */
     nav {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
       z-index: 20;
+      width: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 18px 7%;
-      background: rgba(9, 8, 23, 0.8);
-      backdrop-filter: blur(14px);
+      justify-content: space-between;
+      padding: 14px 7%;
       border-bottom: 1px solid rgba(198, 164, 119, 0.15);
+      background: rgba(9, 8, 23, 0.85);
+      backdrop-filter: blur(14px);
     }
 
-    .logo img {
-      width: 75px;
-      height: 75px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
       object-fit: contain;
-      display: block;
     }
 
     .nav-links {
       display: flex;
-      gap: 25px;
+      gap: 24px;
       list-style: none;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
@@ -162,26 +181,27 @@
 
     .menu-button {
       display: none;
-      border: none;
+      border: 0;
       color: var(--cream);
       background: transparent;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       cursor: pointer;
     }
 
+    /* Sections */
     section {
+      position: relative;
       min-height: 100vh;
       padding: 130px 8% 90px;
-      position: relative;
     }
 
     .section-title {
+      margin-bottom: 25px;
       color: var(--gold);
       font-family: "Cinzel", serif;
       font-size: clamp(2rem, 5vw, 4rem);
       letter-spacing: 3px;
       text-align: center;
-      margin-bottom: 25px;
     }
 
     .section-intro {
@@ -192,6 +212,7 @@
       text-align: center;
     }
 
+    /* Hero */
     .hero {
       display: flex;
       align-items: center;
@@ -201,43 +222,40 @@
     }
 
     .hero-content {
-      max-width: 900px;
       position: relative;
       z-index: 2;
+      max-width: 900px;
     }
 
     .hero-logo {
-      width: 190px;
-      max-width: 70%;
-      height: auto;
-      margin: 0 auto 25px;
-      display: block;
-      filter: drop-shadow(0 0 20px rgba(169, 139, 199, 0.5));
+      width: min(210px, 55vw);
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 20px rgba(169, 139, 199, 0.4));
     }
 
     .eyebrow {
-      color: var(--lavender);
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      font-size: 0.75rem;
       margin-bottom: 22px;
+      color: var(--lavender);
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
     }
 
     .hero h1 {
       color: var(--cream);
       font-family: "Cinzel", serif;
-      font-size: clamp(2.8rem, 8vw, 7rem);
+      font-size: clamp(2.5rem, 8vw, 7rem);
       line-height: 1.1;
       letter-spacing: 5px;
       text-shadow: 0 0 35px rgba(169, 139, 199, 0.5);
     }
 
     .hero h2 {
+      margin: 25px 0;
       color: var(--gold);
       font-family: "Cinzel", serif;
       font-size: clamp(1.2rem, 3vw, 2rem);
       letter-spacing: 4px;
-      margin: 25px 0;
     }
 
     .hero p {
@@ -251,13 +269,13 @@
       position: absolute;
       width: 460px;
       height: 460px;
-      border-radius: 50%;
       border: 2px solid rgba(169, 139, 199, 0.45);
+      border-radius: 50%;
+      opacity: 0.45;
       box-shadow:
         0 0 30px rgba(169, 139, 199, 0.35),
         inset 0 0 45px rgba(169, 139, 199, 0.25);
       animation: portalGlow 5s ease-in-out infinite;
-      opacity: 0.45;
     }
 
     .portal::before,
@@ -265,8 +283,8 @@
       content: "";
       position: absolute;
       inset: 22px;
-      border-radius: 50%;
       border: 1px solid rgba(198, 164, 119, 0.45);
+      border-radius: 50%;
     }
 
     .portal::after {
@@ -275,7 +293,8 @@
     }
 
     @keyframes portalGlow {
-      0%, 100% {
+      0%,
+      100% {
         transform: scale(0.98);
         opacity: 0.35;
       }
@@ -286,10 +305,11 @@
       }
     }
 
+    /* Buttons */
     .button-group {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 15px;
       margin-top: 35px;
     }
@@ -300,11 +320,10 @@
       border: 1px solid var(--gold);
       color: var(--cream);
       background: rgba(198, 164, 119, 0.08);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
       font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       transition: 0.3s ease;
-      cursor: pointer;
     }
 
     .button:hover {
@@ -315,25 +334,27 @@
     }
 
     .button.primary {
-      background: var(--gold);
       color: var(--background);
+      background: var(--gold);
     }
 
+    /* Content */
     .content-box {
       max-width: 1000px;
       margin: auto;
       padding: 40px;
       border: 1px solid rgba(169, 139, 199, 0.25);
+      color: var(--muted);
       background: rgba(25, 16, 48, 0.62);
       box-shadow: 0 0 35px rgba(46, 22, 73, 0.35);
       line-height: 1.9;
-      color: var(--muted);
     }
 
     .content-box p + p {
       margin-top: 20px;
     }
 
+    .mission-vision,
     .principles-grid,
     .resources-grid,
     .press-grid,
@@ -346,16 +367,13 @@
     }
 
     .mission-vision {
-      max-width: 1100px;
-      margin: 0 auto 70px;
-      display: grid;
+      margin-bottom: 70px;
       grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
     }
 
     .card {
-      padding: 30px 24px;
       min-height: 170px;
+      padding: 30px 24px;
       border: 1px solid rgba(169, 139, 199, 0.25);
       background: linear-gradient(
         145deg,
@@ -366,15 +384,15 @@
     }
 
     .card:hover {
-      transform: translateY(-8px);
       border-color: var(--gold);
       box-shadow: 0 0 28px rgba(169, 139, 199, 0.25);
+      transform: translateY(-8px);
     }
 
     .card h3 {
+      margin-bottom: 15px;
       color: var(--gold);
       font-family: "Cinzel", serif;
-      margin-bottom: 15px;
       letter-spacing: 1px;
     }
 
@@ -385,34 +403,47 @@
     }
 
     .card .button {
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
-    .mission-vision .card {
-      min-height: 280px;
-    }
-
+    /* Team */
     .team-image {
       max-width: 1000px;
       height: 430px;
       margin: auto;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
+      justify-content: center;
       border: 1px solid rgba(198, 164, 119, 0.4);
-      background:
-        linear-gradient(rgba(26, 14, 48, 0.65), rgba(26, 14, 48, 0.65)),
-        url("images/team-photo.jpg") center/cover;
       color: var(--cream);
+      background:
+        linear-gradient(
+          rgba(26, 14, 48, 0.65),
+          rgba(26, 14, 48, 0.65)
+        ),
+        url("images/team-photo.jpg") center / cover;
       font-family: "Cinzel", serif;
       letter-spacing: 2px;
+      text-align: center;
     }
 
+    /* Sponsors */
+    .sponsor-card {
+      text-align: center;
+    }
+
+    .sponsor-card img {
+      width: 130px;
+      height: 130px;
+      margin-bottom: 20px;
+      object-fit: contain;
+    }
+
+    /* Footer */
     footer {
       padding: 60px 8% 30px;
-      background: #070615;
       border-top: 1px solid rgba(198, 164, 119, 0.25);
+      background: #070615;
       text-align: center;
     }
 
@@ -425,10 +456,9 @@
     }
 
     .footer-item h4 {
+      margin-bottom: 10px;
       color: var(--gold);
       font-family: "Cinzel", serif;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
     }
 
     .footer-item p,
@@ -445,30 +475,39 @@
       font-size: 0.8rem;
     }
 
+    /* Mobile */
     @media (max-width: 800px) {
+      nav {
+        padding: 12px 6%;
+      }
+
+      .brand {
+        font-size: 0.85rem;
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
+      }
+
       .menu-button {
         display: block;
       }
 
       .nav-links {
-        display: none;
         position: absolute;
-        top: 85px;
+        top: 65px;
         left: 0;
         width: 100%;
-        padding: 25px;
+        display: none;
         flex-direction: column;
+        padding: 25px;
+        background: rgba(9, 8, 23, 0.97);
         text-align: center;
-        background: rgba(9, 8, 23, 0.96);
       }
 
       .nav-links.active {
         display: flex;
-      }
-
-      .logo img {
-        width: 60px;
-        height: 60px;
       }
 
       .portal {
@@ -485,23 +524,37 @@
         padding: 25px;
       }
 
+      .team-image {
+        height: 300px;
+      }
+
       section {
-        padding-left: 6%;
         padding-right: 6%;
+        padding-left: 6%;
       }
     }
   </style>
 </head>
 
 <body>
+
   <div class="stars"></div>
 
+  <!-- Navigation -->
   <nav>
-    <a href="#home" class="logo">
-      <img src="images/arpsmun-logo.png" alt="ARPSMUN V Logo">
+    <a href="#home" class="brand">
+      <img src="images/logo.png" alt="ARPSMUN logo">
+      <span>ARPSMUN V</span>
     </a>
 
-    <button class="menu-button" onclick="toggleMenu()" aria-label="Open navigation">
+    <button
+      class="menu-button"
+      type="button"
+      onclick="toggleMenu()"
+      aria-label="Open navigation menu"
+      aria-controls="navLinks"
+      aria-expanded="false"
+    >
       ☰
     </button>
 
@@ -517,27 +570,31 @@
     </ul>
   </nav>
 
+  <!-- Home -->
   <section class="hero" id="home">
     <div class="portal"></div>
 
     <div class="hero-content">
       <img
         class="hero-logo"
-        src="images/arpsmun-logo.png"
-        alt="ARPSMUN V Logo"
+        src="images/logo.png"
+        alt="Alrawabi Model United Nations logo"
       >
 
-      <div class="eyebrow">Through Portals</div>
+      <div class="eyebrow">Moving Through Portals</div>
 
-      <h1>Alrawabi<br>Model United Nations</h1>
+      <h1>
+        Alrawabi<br>
+        Model United Nations
+      </h1>
 
       <h2>ARPSMUN V</h2>
 
       <p>
         Model United Nations is an educational simulation of a UN conference
         organized by high school students in Bahrain. Participants take on roles
-        such as delegates, chairpersons, and press members, engaging in discussions
-        to solve global issues.
+        such as delegates, chairpersons, and press members, engaging in
+        discussions to solve global issues.
       </p>
 
       <div class="button-group">
@@ -548,33 +605,35 @@
     </div>
   </section>
 
+  <!-- About -->
   <section id="about">
     <h2 class="section-title">About ARPSMUN</h2>
 
     <div class="content-box">
       <p>
-        Model United Nations (MUN) is an educational simulation of a UN conference
-        organized by high school students in Bahrain. Participants take on roles
-        such as delegates, chairpersons, and press members, engaging in discussions
-        to solve global issues.
+        Model United Nations, or MUN, is an educational simulation of a United
+        Nations conference organized by high school students in Bahrain.
+        Participants take on roles such as delegates, chairpersons, and press
+        members while discussing solutions to global issues.
       </p>
 
       <p>
-        This experience helps students develop skills in leadership, critical
-        thinking, diplomacy, negotiation, and debate, while also providing
-        networking opportunities.
+        This experience helps students develop leadership, critical thinking,
+        diplomacy, negotiation, public speaking, and debate skills. It also
+        provides valuable networking opportunities.
       </p>
 
       <p>
-        Al Rawabi Private School’s previous MUN conference was a remarkable success,
-        featuring notable guests such as H.E. Shikha Fajer bint Ali bin Rashid Al
-        Khalifa and Ms. Nancy Ellie Khadori from the Shura Council. This year,
-        Al Rawabi will host its Fifth MUN, ARPSMUN V, continuing its mission to
-        empower students and the wider community.
+        Al Rawabi Private School's previous MUN conference was a remarkable
+        success, featuring notable guests such as H.E. Shikha Fajer bint Ali bin
+        Rashid Al Khalifa and Ms. Nancy Ellie Khadori from the Shura Council.
+        This year, Al Rawabi will host its fifth MUN conference, ARPSMUN V,
+        continuing its mission to empower students and the wider community.
       </p>
     </div>
   </section>
 
+  <!-- Mission and Vision -->
   <section id="mission">
     <h2 class="section-title">Guiding Principles of ARPSMUN</h2>
 
@@ -582,22 +641,22 @@
       <div class="card">
         <h3>Mission</h3>
         <p>
-          To educate young students by raising awareness of global issues. We aim
-          to develop critical thinking, enhance public speaking, diplomatic skills,
-          and build confidence through meaningful engagement. By fostering
-          intellectual growth, we inspire youth to become proactive contributors
-          to a better world.
+          To educate young students by raising awareness of global issues. We
+          aim to develop critical thinking, enhance public speaking and
+          diplomatic skills, and build confidence through meaningful engagement.
+          By fostering intellectual growth, we inspire youth to become proactive
+          contributors to a better world.
         </p>
       </div>
 
       <div class="card">
         <h3>Vision</h3>
         <p>
-          To build a respected student-led organization that students aspire to be
-          part of. Through impactful Model United Nations conferences, we aim to
-          shape a generation of informed, confident, and compassionate young
-          leaders with the voice, determination, and courage to address global
-          challenges and create positive change.
+          To build a respected student-led organization that students aspire to
+          be part of. Through impactful Model United Nations conferences, we aim
+          to shape a generation of informed, confident, and compassionate young
+          leaders with the determination and courage to address global
+          challenges.
         </p>
       </div>
     </div>
@@ -625,6 +684,7 @@
     </div>
   </section>
 
+  <!-- Resources -->
   <section id="resources">
     <h2 class="section-title">Resources</h2>
 
@@ -658,6 +718,7 @@
     </div>
   </section>
 
+  <!-- Team -->
   <section id="team">
     <h2 class="section-title">Meet the Team</h2>
 
@@ -672,6 +733,7 @@
     </div>
   </section>
 
+  <!-- Press Drive -->
   <section id="press">
     <h2 class="section-title">Press Drive</h2>
 
@@ -701,6 +763,7 @@
     </div>
   </section>
 
+  <!-- Sponsors -->
   <section id="sponsors">
     <h2 class="section-title">Our Sponsors</h2>
 
@@ -710,23 +773,27 @@
     </p>
 
     <div class="sponsors-grid">
-      <div class="card">
-        <h3>Sponsor Logo</h3>
-        <p>sponsor-image.jpg will be added here.</p>
+      <div class="card sponsor-card">
+        <img src="images/logo.png" alt="Sponsor logo">
+        <h3>Sponsor</h3>
+        <p>Our valued sponsor.</p>
       </div>
 
-      <div class="card">
-        <h3>Sponsor Logo</h3>
-        <p>sponsor-image.jpg will be added here.</p>
+      <div class="card sponsor-card">
+        <img src="images/logo.png" alt="Sponsor logo">
+        <h3>Sponsor</h3>
+        <p>Our valued sponsor.</p>
       </div>
 
-      <div class="card">
-        <h3>Sponsor Logo</h3>
-        <p>sponsor-image.jpg will be added here.</p>
+      <div class="card sponsor-card">
+        <img src="images/logo.png" alt="Sponsor logo">
+        <h3>Sponsor</h3>
+        <p>Our valued sponsor.</p>
       </div>
     </div>
   </section>
 
+  <!-- Registration -->
   <section id="register">
     <h2 class="section-title">Open the Portal</h2>
 
@@ -742,6 +809,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-grid">
       <div class="footer-item">
@@ -768,15 +836,23 @@
   </footer>
 
   <script>
+    const navLinks = document.getElementById("navLinks");
+    const menuButton = document.querySelector(".menu-button");
+
     function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
+      navLinks.classList.toggle("active");
+
+      const menuIsOpen = navLinks.classList.contains("active");
+      menuButton.setAttribute("aria-expanded", menuIsOpen);
     }
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
+    document.querySelectorAll(".nav-links a").forEach((link) => {
       link.addEventListener("click", () => {
-        document.getElementById("navLinks").classList.remove("active");
+        navLinks.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
       });
     });
   </script>
+
 </body>
 </html>
