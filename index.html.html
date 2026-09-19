@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARPSMUN V | Alrawabi Model United Nations</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --background: #090817;
+      --purple: #251342;
+      --lavender: #a98bc7;
+      --gold: #c6a477;
+      --cream: #e0cbaa;
+      --white: #f1ebdd;
+      --muted: #b9aec5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--white);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(87, 45, 125, 0.25), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(113, 65, 151, 0.2), transparent 30%),
+        var(--background);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      opacity: 0.13;
+      pointer-events: none;
+      background: url("https://grainy-gradients.vercel.app/noise.svg");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .stars,
+    .stars::before,
+    .stars::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-repeat: repeat;
+    }
+
+    .stars {
+      opacity: 0.7;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 25% 80%, white, transparent),
+        radial-gradient(1px 1px at 40% 35%, white, transparent),
+        radial-gradient(1px 1px at 60% 15%, white, transparent),
+        radial-gradient(1px 1px at 75% 65%, white, transparent),
+        radial-gradient(1px 1px at 90% 40%, white, transparent),
+        radial-gradient(1px 1px at 50% 90%, white, transparent);
+      background-size: 240px 240px;
+      animation: drift 45s linear infinite;
+    }
+
+    .stars::before {
+      opacity: 0.5;
+      background-image:
+        radial-gradient(2px 2px at 15% 45%, var(--lavender), transparent),
+        radial-gradient(1px 1px at 70% 25%, var(--gold), transparent),
+        radial-gradient(1px 1px at 85% 85%, white, transparent);
+      background-size: 320px 320px;
+      animation: drift 75s linear infinite reverse;
+    }
+
+    .stars::after {
+      opacity: 0.25;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 20%,
+        rgba(99, 43, 143, 0.35),
+        transparent 70%
+      );
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-240px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.15);
+      }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(9, 8, 23, 0.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(198, 164, 119, 0.15);
+    }
+
+    .logo img {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .menu-button {
+      display: none;
+      border: none;
+      color: var(--cream);
+      background: transparent;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 130px 8% 90px;
+      position: relative;
+    }
+
+    .section-title {
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-intro {
+      max-width: 850px;
+      margin: 0 auto 55px;
+      color: var(--muted);
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-logo {
+      width: 190px;
+      max-width: 70%;
+      height: auto;
+      margin: 0 auto 25px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(169, 139, 199, 0.5));
+    }
+
+    .eyebrow {
+      color: var(--lavender);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 0.75rem;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      color: var(--cream);
+      font-family: "Cinzel", serif;
+      font-size: clamp(2.8rem, 8vw, 7rem);
+      line-height: 1.1;
+      letter-spacing: 5px;
+      text-shadow: 0 0 35px rgba(169, 139, 199, 0.5);
+    }
+
+    .hero h2 {
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      letter-spacing: 4px;
+      margin: 25px 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .portal {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      border: 2px solid rgba(169, 139, 199, 0.45);
+      box-shadow:
+        0 0 30px rgba(169, 139, 199, 0.35),
+        inset 0 0 45px rgba(169, 139, 199, 0.25);
+      animation: portalGlow 5s ease-in-out infinite;
+      opacity: 0.45;
+    }
+
+    .portal::before,
+    .portal::after {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(198, 164, 119, 0.45);
+    }
+
+    .portal::after {
+      inset: 55px;
+      border-color: rgba(169, 139, 199, 0.4);
+    }
+
+    @keyframes portalGlow {
+      0%, 100% {
+        transform: scale(0.98);
+        opacity: 0.35;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+      }
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 23px;
+      border: 1px solid var(--gold);
+      color: var(--cream);
+      background: rgba(198, 164, 119, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.75rem;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      color: var(--background);
+      background: var(--gold);
+      box-shadow: 0 0 25px rgba(198, 164, 119, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .button.primary {
+      background: var(--gold);
+      color: var(--background);
+    }
+
+    .content-box {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px;
+      border: 1px solid rgba(169, 139, 199, 0.25);
+      background: rgba(25, 16, 48, 0.62);
+      box-shadow: 0 0 35px rgba(46, 22, 73, 0.35);
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .content-box p + p {
+      margin-top: 20px;
+    }
+
+    .principles-grid,
+    .resources-grid,
+    .press-grid,
+    .sponsors-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .mission-vision {
+      max-width: 1100px;
+      margin: 0 auto 70px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      padding: 30px 24px;
+      min-height: 170px;
+      border: 1px solid rgba(169, 139, 199, 0.25);
+      background: linear-gradient(
+        145deg,
+        rgba(48, 26, 76, 0.8),
+        rgba(14, 12, 36, 0.8)
+      );
+      transition: 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 0 28px rgba(169, 139, 199, 0.25);
+    }
+
+    .card h3 {
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .card .button {
+      margin-top: 20px;
+    }
+
+    .mission-vision .card {
+      min-height: 280px;
+    }
+
+    .team-image {
+      max-width: 1000px;
+      height: 430px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 1px solid rgba(198, 164, 119, 0.4);
+      background:
+        linear-gradient(rgba(26, 14, 48, 0.65), rgba(26, 14, 48, 0.65)),
+        url("images/team-photo.jpg") center/cover;
+      color: var(--cream);
+      font-family: "Cinzel", serif;
+      letter-spacing: 2px;
+    }
+
+    footer {
+      padding: 60px 8% 30px;
+      background: #070615;
+      border-top: 1px solid rgba(198, 164, 119, 0.25);
+      text-align: center;
+    }
+
+    .footer-grid {
+      max-width: 900px;
+      margin: 0 auto 45px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer-item h4 {
+      color: var(--gold);
+      font-family: "Cinzel", serif;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .footer-item p,
+    .footer-item a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .copyright {
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #81798c;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 800px) {
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 85px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        flex-direction: column;
+        text-align: center;
+        background: rgba(9, 8, 23, 0.96);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .logo img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .portal {
+        width: 310px;
+        height: 310px;
+      }
+
+      .mission-vision,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-box {
+        padding: 25px;
+      }
+
+      section {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <nav>
+    <a href="#home" class="logo">
+      <img src="images/arpsmun-logo.png" alt="ARPSMUN V Logo">
+    </a>
+
+    <button class="menu-button" onclick="toggleMenu()" aria-label="Open navigation">
+      ☰
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#press">Press Drive</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#register">Register</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="portal"></div>
+
+    <div class="hero-content">
+      <img
+        class="hero-logo"
+        src="images/arpsmun-logo.png"
+        alt="ARPSMUN V Logo"
+      >
+
+      <div class="eyebrow">Through Portals</div>
+
+      <h1>Alrawabi<br>Model United Nations</h1>
+
+      <h2>ARPSMUN V</h2>
+
+      <p>
+        Model United Nations is an educational simulation of a UN conference
+        organized by high school students in Bahrain. Participants take on roles
+        such as delegates, chairpersons, and press members, engaging in discussions
+        to solve global issues.
+      </p>
+
+      <div class="button-group">
+        <a class="button primary" href="#team">Meet the Team</a>
+        <a class="button" href="#press">Press Drive</a>
+        <a class="button" href="#register">Register Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About ARPSMUN</h2>
+
+    <div class="content-box">
+      <p>
+        Model United Nations (MUN) is an educational simulation of a UN conference
+        organized by high school students in Bahrain. Participants take on roles
+        such as delegates, chairpersons, and press members, engaging in discussions
+        to solve global issues.
+      </p>
+
+      <p>
+        This experience helps students develop skills in leadership, critical
+        thinking, diplomacy, negotiation, and debate, while also providing
+        networking opportunities.
+      </p>
+
+      <p>
+        Al Rawabi Private School’s previous MUN conference was a remarkable success,
+        featuring notable guests such as H.E. Shikha Fajer bint Ali bin Rashid Al
+        Khalifa and Ms. Nancy Ellie Khadori from the Shura Council. This year,
+        Al Rawabi will host its Fifth MUN, ARPSMUN V, continuing its mission to
+        empower students and the wider community.
+      </p>
+    </div>
+  </section>
+
+  <section id="mission">
+    <h2 class="section-title">Guiding Principles of ARPSMUN</h2>
+
+    <div class="mission-vision">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>
+          To educate young students by raising awareness of global issues. We aim
+          to develop critical thinking, enhance public speaking, diplomatic skills,
+          and build confidence through meaningful engagement. By fostering
+          intellectual growth, we inspire youth to become proactive contributors
+          to a better world.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Vision</h3>
+        <p>
+          To build a respected student-led organization that students aspire to be
+          part of. Through impactful Model United Nations conferences, we aim to
+          shape a generation of informed, confident, and compassionate young
+          leaders with the voice, determination, and courage to address global
+          challenges and create positive change.
+        </p>
+      </div>
+    </div>
+
+    <div class="principles-grid">
+      <div class="card">
+        <h3>Leadership</h3>
+        <p>Encouraging students to lead with confidence and responsibility.</p>
+      </div>
+
+      <div class="card">
+        <h3>Diplomacy</h3>
+        <p>Promoting respectful communication and peaceful negotiation.</p>
+      </div>
+
+      <div class="card">
+        <h3>Integrity</h3>
+        <p>Acting with honesty, fairness, and accountability.</p>
+      </div>
+
+      <div class="card">
+        <h3>Global Awareness</h3>
+        <p>Understanding international issues and diverse perspectives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2 class="section-title">Resources</h2>
+
+    <p class="section-intro">
+      Official guidelines, council information, and conference documents will be
+      available here as they are released.
+    </p>
+
+    <div class="resources-grid">
+      <div class="card">
+        <h3>Conference Guidelines</h3>
+        <p>Guidelines and information for all participants.</p>
+        <a class="button" href="files/conference-guidelines.pdf" download>
+          Download
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Councils</h3>
+        <p>Explore the councils and committees of ARPSMUN V.</p>
+        <a class="button" href="files/councils.pdf" download>
+          View File
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Background Guides</h3>
+        <p>Committee topics and preparation materials will be added soon.</p>
+        <a class="button" href="#">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2 class="section-title">Meet the Team</h2>
+
+    <p class="section-intro">
+      Our dedicated team works tirelessly to ensure every ARPSMUN event is a
+      success. We are proud of the collaboration, leadership, and creativity
+      each member brings.
+    </p>
+
+    <div class="team-image">
+      <p>Team photograph will be added after the photoshoot.</p>
+    </div>
+  </section>
+
+  <section id="press">
+    <h2 class="section-title">Press Drive</h2>
+
+    <p class="section-intro">
+      Discover official press drives, media coverage, and visual highlights from
+      ARPSMUN. Each press drive will have its own dedicated template.
+    </p>
+
+    <div class="press-grid">
+      <div class="card">
+        <h3>Press Drive One</h3>
+        <p>Press drive information will be added here.</p>
+        <a class="button" href="YOUR_PRESS_DRIVE_LINK">Open Drive</a>
+      </div>
+
+      <div class="card">
+        <h3>Press Drive Two</h3>
+        <p>Press drive information will be added here.</p>
+        <a class="button" href="YOUR_PRESS_DRIVE_LINK">Open Drive</a>
+      </div>
+
+      <div class="card">
+        <h3>Press Drive Three</h3>
+        <p>Press drive information will be added here.</p>
+        <a class="button" href="YOUR_PRESS_DRIVE_LINK">Open Drive</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sponsors">
+    <h2 class="section-title">Our Sponsors</h2>
+
+    <p class="section-intro">
+      We are grateful to the organizations and supporters who contribute to the
+      success of ARPSMUN.
+    </p>
+
+    <div class="sponsors-grid">
+      <div class="card">
+        <h3>Sponsor Logo</h3>
+        <p>sponsor-image.jpg will be added here.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sponsor Logo</h3>
+        <p>sponsor-image.jpg will be added here.</p>
+      </div>
+
+      <div class="card">
+        <h3>Sponsor Logo</h3>
+        <p>sponsor-image.jpg will be added here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="register">
+    <h2 class="section-title">Open the Portal</h2>
+
+    <p class="section-intro">
+      Begin your journey through diplomacy, debate, leadership, and global
+      awareness at ARPSMUN V.
+    </p>
+
+    <div class="button-group">
+      <a class="button primary" href="YOUR_REGISTRATION_LINK">
+        Register Now
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <h4>Location</h4>
+        <p>Hotel<br>Bahrain</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>Contact</h4>
+        <a href="mailto:arps.mun@alrawabi.edu.bh">
+          arps.mun@alrawabi.edu.bh
+        </a>
+      </div>
+
+      <div class="footer-item">
+        <h4>Date</h4>
+        <p>8th &amp; 9th JAN 2027<br>Save the Dates!</p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © 2026 ARPSMUN
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+  </script>
+</body>
+</html>
